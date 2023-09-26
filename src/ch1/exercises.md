@@ -1,137 +1,302 @@
-# Exercises
+# Chapter 1: Sentential Logic (Exercises)
 
-1. Question 1
-   1. Factor $215 − 1 = 32,767$ into a product of two smaller positive integers.
+## 1.1 Deductive Reasoning
 
-      $$
-      \begin{aligned}
-        n = 15 \\
-        2^n - 1 = 2^15 - 1 = 32,767 \\
-        15 = 5 * 3 \\\\
+1. Analyze the logical forms of the following statements:
+   1. We’ll have either a reading assignment or homework problems, but
+we won’t have both homework problems and a test.
 
-        a = 5, \space b = 3 \\\\
+        $$
+        \begin{aligned}
+          R = \text{You will have a reading assignment} \\
+          H = \text{You will be given homework problems} \\
+          T = \text{You will be given a test} \\\\
 
-        x = 2^b - 1 = \\\\
-        y = 1 + 2^b + 2^b + ... + 2^{(a - 1)b} \\\\
+          \text{We know 'but' corresponds to } \land \\
+           \text{Therefore, the logical form of the above statement becomes} \\\\
 
-        x = 2^3 - 1 = 7\newline
-        y = 1 + 2^{3} + 2^{6} + 2^{9} + 2^{12} = 4681 \\\\
+          (R\,\lor\,H)\,\land\,\lnot\,(H\,\land\,T) \\
+        \end{aligned}
+        $$
 
-        {\boldsymbol{xy = 7 * 4681 = {\bold 32,767}}}
-      \end{aligned}
-      $$
+   2. You won’t go skiing, or you will and there won’t be any snow.
 
-   2. Find an integer $x$ such that $1 < x < (2^32,767) − 1$ and $2^32,767 − 1$ is divisible by $x$.
+        $$
+        \begin{aligned}
+          SK = \text{You will go skiing} \\
+          SN = \text{There will be snow} \\\\
 
-      $$
-      \begin{aligned}
-        2^32767 - 1 = ... \\
-        n = 32,767 \\\\
+          \text{Translating the above then becomes}  \\\\
 
-        a = 4681, \space b = 7 \\\\
+          \lnot\,SK\,\lor\,(SK\,\land\,\lnot\,SN)
+        \end{aligned}
+        $$
 
-        x = 2^b - 1 \\
-        {\boldsymbol{x = 2^7 - 1 = 128}}
-      \end{aligned}
-      $$
+   3. $\sqrt{7}\,\leq\,2$
 
-2. Make some conjectures about the values of $n$ for which $3n − 1$ is prime or the values of $n$ for which $3n − 2n$ is prime
+        $$
+          \begin{aligned}
+            \text{The above translates, in English to, "the } \sqrt{7} \text{ is not less than or equal to 2"} \\\\
 
-    | **n** | **is n Prime** | **3^n -1** | **is 3^n -1 prime** |
-    |-------|----------------|------------|---------------------|
-    | 2     | yes            | 8          | no                  |
-    | 3     | yes            | 26         | no                  |
-    | 4     | no             | 80         | no                  |
-    | 5     | yes            | 242        | no                  |
-    | 6     | no             | 728        | no                  |
-    | 7     | yes            | 2186       | no                  |
-    | 8     | no             | 6560       | no                  |
-    | 9     | no             | 19682      | no                  |
-    | 10    | no             | 59048      | no                  |
+            L2 = \sqrt{7} < 2 \\
+            E2 = \sqrt{7} = 2 \\\\
 
-    **Conjecture 1:** Suppose $n$ is an integer greater than $1$ and $n$ is prime. Then $3^n - 1$ is not prime
+            \text{With the above defined, we get the following statement} \\\\
 
-    **Conjecture 2:** Suppose $n$ is an integer greater than $1$ and $n$ is not prime. Then $3^n - 1$ is not prime
+            \lnot\,(L2\,\lor\,E2)
+          \end{aligned}
+        $$
 
-3. The proof of **Theorem 3** gives a method for finding a prime number different from any in a given list of prime numbers.
-   1. Use this method to find a prime different from 2, 3, 5, and 7.
+2. Analyze the logical forms of the following statements:
 
-      $$
-      \begin{align*}
-        primes = 2,3,5,7 \\
-        P = 2*3*5*7 + 1 = 211 \\
-        {\boldsymbol{P = 211}}
-      \end{align*}
-      $$
+    1. Either John and Bill are both telling the truth, or neither of them is.
 
-   2. Use this method to find a prime different from 2, 5, and 11.
+        $$
+        \begin{aligned}
+          J = \text{John is telling the truth} \\
+          B  = \text{Bill is telling the truth} \\\\
 
-      $$
-      \begin{aligned}
-        primes = 2,5,11 \\
-        P = 2*5*11 + 1 = 111 \\
-        {\boldsymbol{P = 111}}
-      \end{aligned}
-      $$
+          \text{Therefore, the above statement can be translated to} \\\\
 
-4. Find five consecutive integers that are not prime
+          (J\,\land\,B)\,\lor\,\lnot\,(J\,\land\,B)
+        \end{aligned}
+        $$
 
-    $[5042,5043,5044,5045,5046]$
+    2. I’ll have either fish or chicken, but I won’t have both fish and mashed potatoes.
 
-    ```haskell
-    factorial :: Integer -> Integer
-    factorial 0 = 1
-    factorial 1 = 1
-    factorial 2 = 2
-    factorial n = n * (factorial $ n - 1)
+        $$
+        \begin{aligned}
+          F = \text{I'll have fish} \\
+          C  = \text{I'll have chicken} \\
+          MP = \text{I'll have mashed potatoes} \\\\
 
-    isPrime :: Integer -> Bool
-    isPrime k = length [ x | x <- [2..k], k `mod` x == 0] == 1
+          \text{Therefore, the above statement can be translated to} \\\\
 
-    main :: IO ()
-    main = do
-      let x = (factorial $ 6 + 1) + 2
-      let xs = take 5 $ enumFrom x
-      print $ isPrime <$> xs
-      print xs
-    ```
+          (F\,\lor\,C)\,\land\,\lnot\,(F\,\land\,MP)
+        \end{aligned}
+        $$
 
-5. Use the table in Figure 1.1 and the discussion on p.5 to find two more
-perfect numbers.
+    3. 3 is a common divisor of 6, 9, and 15.
 
-    It is proven that, if $2^n - 1$ is prime, then $2^{n - 1}(2^n - 1)$ is perfect. Thus, to find other perfect numbers, we must find values for $n$ such that $2^n - 1$ is prime
+        $$
+        \begin{aligned}
+          S = \text{3 is a common divisor of 6} \\
+          N = \text{3 is a common divisor of 9} \\
+          FF  = \text{3 is a common divisor of 15} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          S\,\land\,N\,\land\,FF
+        \end{aligned}
+        $$
+
+3. Analyze the logical forms of the following statements:
+
+    1. Alice and Bob are not both in the room.
+
+        $$
+        \begin{aligned}
+          A = \text{Alice is in the room} \\
+          B = \text{Bob is in the room} \\\\
+
+          \text{The statement implies that either one of them is in the room, but never both.} \\
+          \text{However, it is also possible for neither of them to be in the room as well} \\
+          \text{Therefore, the above statement can be translated to the following} \\\\
+
+          \lnot\,(A\,\land\,B) \\\\
+
+          \text{Alternatively, we could say}\\\\
+
+          NA = \text{Alice is not in the room} \\
+          NB = \text{Bob is not in the room} \\\\
+
+          \text{Thus} \\\\
+
+          NA\,\lor\,NB
+        \end{aligned}
+        $$
+
+    2. Alice and Bob are both not in the room.
+
+        $$
+        \begin{aligned}
+          \text{The above statement, can be rewritten (for clarity) as "Neither Alice nor Bob is in the room"} \\\\
+
+          A = \text{Alice is in the room} \\
+          B = \text{Bob is in the room} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          \lnot\,A\,\land\,\lnot\,B
+
+          \text{The above expression can be restated using DeMorgan's Law} \\\\
+
+          \lnot\,(A\,\lor\,B)
+        \end{aligned}
+        $$
+
+    3. Either Alice or Bob is not in the room.
+
+        $$
+        \begin{aligned}
+          A = \text{Alice is in the room} \\
+          B = \text{Bob is in the room} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          \lnot\,A\,\lor\,\lnot\,B \\\\
+
+          \text{The above expression can be restated using DeMorgan's Law} \\\\
+
+          \lnot\,(A\,\land\,B)
+        \end{aligned}
+        $$
+
+    4. Neither Alice nor Bob is in the room.
+
+        $$
+        \begin{aligned}
+          A = \text{Alice is in the room} \\
+          B = \text{Bob is in the room} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          \lnot\,A\,\land\,\lnot\,B \\\\
+
+          \text{The above expression can be simplified using DeMorgan's Law} \\\\
+
+          \lnot\,(A\,\lor\,B)
+        \end{aligned}
+        $$
+
+4. Analyze the logical forms of the following statements
+   1. Either both Ralph and Ed are tall, or both of them are handsome
+
+        $$
+        \begin{aligned}
+          RT = \text{Ralph is tall} \\
+          ET = \text{Ed is tall} \\
+          RH = \text{Ralph is handsome} \\
+          EH = \text{Ed is handsome} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          (RT\,\land\,ET)\,\lor\,(RH\,\land\,EH)
+        \end{aligned}
+        $$
+
+   2. Both Ralph and Ed are either tall or handsome.
+
+        $$
+        \begin{aligned}
+          RT = \text{Ralph is tall} \\
+          ET = \text{Ed is tall} \\
+          RH = \text{Ralph is handsome} \\
+          EH = \text{Ed is handsome} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          (RT\,\lor\,RH)\,\land\,(EH\,\lor\,ET)
+        \end{aligned}
+        $$
+
+   3. Both Ralph and Ed are neither tall nor handsome.
+
+        $$
+        \begin{aligned}
+          RT = \text{Ralph is tall} \\
+          ET = \text{Ed is tall} \\
+          RH = \text{Ralph is handsome} \\
+          EH = \text{Ed is handsome} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          (\lnot\,RT\,\lor\,\lnot\,RH)\,\land\,(\lnot\,EH\,\lor\,\lnot\,ET) \\\\
+
+          \text{The above expression can be restated using DeMorgan's Law} \\\\
+
+          \lnot\,(RT\,\lor\,RH)\,\land\,\lnot\,(EH\,\lor\,ET)
+        \end{aligned}
+        $$
+
+   4. Neither Ralph nor Ed is both tall and handsome.
+
+        $$
+        \begin{aligned}
+          RT = \text{Ralph is tall} \\
+          ET = \text{Ed is tall} \\
+          RH = \text{Ralph is handsome} \\
+          EH = \text{Ed is handsome} \\\\
+
+          \text{Therefore, the above statement can be translated to} \\\\
+
+          \lnot\,(RT\,\land\,RH)\,\land\,\lnot\,(ET\,\land\,EH)
+        \end{aligned}
+        $$
+
+5. Which of the following expressions are well-formed formulas?
+
+    1. $¬(¬P ∨ ¬¬R)$ - This is well-formed, can be rewritten as $P ∨ ¬R$
+    2. $¬(P, Q, ∧ R)$ - This is not well-formed as it contains a comma which is not a part of the lexicon of the logical symbols
+    3. $P ∧ ¬ P$ - This is well formed
+    4. $(P ∧ Q)(P ∨ R)$- This is not well-formed as there is nothing connecting $(P ∧ Q)$ and $(P ∨ R)$
+
+6. Let $P$ stand for the statement “I will buy the pants” and $S$ for the statement “I will buy the shirt.” What English sentences are represented by the following formulas?
 
     $$
     \begin{aligned}
-      n = 5 \\
-      2^5 - 1 = 31 \\
-      2^{4}(31) = \boldsymbol{496} \\\\
-
-      n = 7 \\
-      2^7 - 1 = 127 \\
-      2^{6}{127} = \boldsymbol{8128}
+      P = \text{I will buy the pants} \\
+      S = \text{I will buy the shirt} \\\
     \end{aligned}
     $$
 
-6. The sequence $3, 5, 7$ is a list of three prime numbers such that each pair of adjacent numbers in the list differ by two. Are there any more such “triplet primes”?
+    1. $¬(P ∧ ¬S)$: Can be rewritten as $¬P ∨ S$. Translates to "Either I will not buy the pants or I will buy the shirt"
+    2. $¬P ∧ ¬S$: Translates to "I will neither buy the pants nor the shirt"
+    3. $¬P ∨ ¬S$: Translates to "I will either not buy the pants or I will not buy the shirt"
 
-    No because, as noted in the text, the occurrence of primes thins out as we look at larger numbers. Meaning, as we look at larger numbers, the gap between any two primes begins to widen. Hence, there is only one of such sequence of prime numbers
+7. Let $S$ stand for the statement “Steve is happy” and $G$ for “George is happy.” What English sentences are represented by the following formulas?
 
-    Evidence of this can be found using the proof for theorem 4. This sequence is possible only when we set $n$ to $0$. When $n$ is set to anything greater, the gap between primes starts to widen as well
+    $$
+    \begin{aligned}
+      S = \text{Steve is happy} \\
+      G = \text{George is happy} \\\
+    \end{aligned}
+    $$
 
-7. A pair of distinct positive integers (m, n) is called amicable if the sum of all positive integers smaller than n that divide n is m, and the sum of all positive integers smaller than m that divide m is n. Show that $(220, 284)$ is amicable.
+    1. $(S ∨ G) ∧ (¬S ∨ ¬G)$: Translates to "Either Steve or George is happy, but not both"
+    2. $[S ∨ (G ∧ ¬S)] ∨ ¬G$: Translates to "Either Steve is happy, or George is happy and Steve isn't, or George isn't happy"
+    3. $S ∨ [G ∧ (¬S ∨ ¬G)]$: Translates to "Either Steve is happy, or George is happy and at least one of them is unhappy"
 
-    ```haskell
-    areAmicable :: (Integer, Integer) -> Bool
-    areAmicable (m, n) = isNAmicable && isMAmicable
-     where
-      isNAmicable = calc n == m
-      isMAmicable = calc m == n
+8. Let $T$ stand for the statement “Taxes will go up” and $D$ for “The deficit will go up.” What English sentences are represented by the following formulas?
 
-    calc :: Integer -> Integer
-    calc v = sum $ [x | x <- [1..(v - 1)], (mod v) x == 0]
+    $$
+    \begin{aligned}
+      T = \text{Taxes will go up} \\
+      D = \text{The deficit will go up} \\\
+    \end{aligned}
+    $$
 
-    main :: IO ()
-    main = do
-      print $ areAmicable (220, 284) -- True
-    ```
+    1. $T ∨ D$: Translates to "Either taxes will go up or the deficit will go up"
+    2. $¬(T ∧ D) ∧ ¬(¬T ∧ ¬D)$: Can be rewritten as $(¬T ∨ ¬D) ∧ (T ∨ D)$. Translates to "Either Taxes go up, or deficit go up, but not both"
+    3. $(T ∧ ¬D) ∨ (D ∧ ¬T)$: Translates to "Either Taxes go up, or deficit go up, but not both"
+
+9. Identify the premises and conclusions of the following deductive arguments and analyze their logical forms. Do you think the reasoning is valid? (Although you will have only your intuition to guide you in answering this last question, in the next section we will develop some techniques for determining the validity of arguments.)
+
+    A premise is a statement that is assumed to be true and from which a conclusion can be drawn
+
+    1. Jane and Pete won’t both win the math prize. Pete will win either the math prize or the chemistry prize. Jane will win the math prize. Therefore, Pete will win the chemistry prize
+
+        ```text
+        Premises
+          - Jane and Pete won’t both win the math prize
+          - Pete will win either the math prize or the chemistry prize
+          - Jane will win the math prize
+
+        Conclusion
+          - Pete will win the chemistry prize
+
+        Logical Form
+        ~~~text
+        
+        ~~~
+        ```
