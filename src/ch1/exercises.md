@@ -296,7 +296,84 @@ we won’t have both homework problems and a test.
           - Pete will win the chemistry prize
 
         Logical Form
-        ~~~text
-        
-        ~~~
+          JM = Jane will win the Math prize
+          PM = Pete will win the Math prize
+
+          PC = Pete will win the Chemistry prize
+          JC = Jane will win the Chemistry prize
+
+          not (JM and PM), equivalent to, (not JM or not PM)
+          PM or PC
+          JM - Conclusion
         ```
+
+        This argument seems valid because, though Pete could win either the math prize or the chemistry prize, Jane **will** win the math prize, leaving Pete to win the chemistry prize and both of them can't win the math prize at the same time
+
+    2. The main course will be either beef or fish. The vegetable will be either peas or corn. We will not have both fish as a main course and corn as a vegetable. Therefore, we will not have both beef as a main course and peas as a vegetable.
+
+        ```text
+        Premises
+          - The main course will be either beef or fish
+          - The vegetable will be either peas or corn
+          - We will not have both fish as a main course and corn as a vegetable
+
+        Conclusion
+          - We will not have both beef as a main course and peas as a vegetable
+
+        Logical Form
+          MCB = The main course will be beef
+          MCF = The main course will be fish
+
+          VP = The vegetable will be peas
+          VC = The vegetable will be corn
+
+          MCB or MCF
+          VP or VC
+          not (MCF and VC), equivalent to, (not MCF or not VC)
+          not (MCB and VP), equivalent to, (not MCB or not VP) - Conclusion
+        ```
+
+        This argument seems invalid because it is possible for the conclusion to be false while the premises are true. Specifically, it is possible for the vegetable to be either corn, while the main course is beef, a different outcome from the proposed conclusion
+
+    3. Either John or Bill is telling the truth. Either Sam or Bill is lying. Therefore, either John is telling the truth or Sam is lying.
+
+        ```text
+        Premises
+          - Either John or Bill is telling the truth
+          - Either Sam or Bill is lying
+
+        Conclusion
+          - Either John is telling the truth or Sam is lying
+
+        Logical Form
+          J = John is telling the truth
+          B = Bill is telling the truth
+
+          S = Sam is telling the truth
+
+          J or B
+          not S or not B, equivalent to, not (S and B)
+          J or not S
+        ```
+
+        This argument seems valid because the conclusion cannot be true without at least one of the premises being true
+
+    4. Either sales will go up and the boss will be happy, or expenses will go up and the boss won’t be happy. Therefore, sales and expenses will not both go up.
+
+        ```text
+        Premises
+          - Either sales will go up and the boss will be happy, or expenses will go up and the boss won't be happy
+
+        Conclusion
+          - Sales and expenses will not both go up
+
+        Logical Form
+          S = Sales will go up
+          E = Expenses will go up
+          B = The boss will be happy
+
+          (S and B) or (E and not B)
+          not (S and E)
+        ```
+
+        This argument seems invalid because the premise can be true without the conclusion being true
