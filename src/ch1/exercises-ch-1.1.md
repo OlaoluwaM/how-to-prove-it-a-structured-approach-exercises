@@ -1,6 +1,4 @@
-# Chapter 1: Sentential Logic (Exercises)
-
-## 1.1 Deductive Reasoning
+# Chapter 1.1: Deductive Reasoning (Exercises)
 
 1. Analyze the logical forms of the following statements:
    1. We’ll have either a reading assignment or homework problems, but
